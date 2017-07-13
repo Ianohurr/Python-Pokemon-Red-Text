@@ -41,6 +41,25 @@ class randomEnemy():
         print("It hit for",str(attackPower)+"hp!")
         return attackPower
 
+class Enemy():
+    def __init__(self):
+        self.level=0
+        self.health=0
+        self.name=""
+        self.attacks=[]
+
+    def attack(self):
+        attackPower=random.randint(1,3)+self.level
+        if (self.level<=4):
+            randomAttack=random.randint(0,1)
+        elif(self.level>=5 and self.level<=9):
+            randomAttack=random.randint(0,2)
+        else:
+            randomAttack=random.randint(0,3)
+        print(self.name,"used",self.attacks[randomAttack]+"!")
+        print("It hit for",str(attackPower)+"hp!")
+        return attackPower
+
 def battle(starter,enemy):
     while (starter.health>0 and enemy.health>0):
         enemy.health-=starter.attack()
@@ -63,12 +82,24 @@ def battle(starter,enemy):
 def gymBattle(starter):
     print("You challenge Brock...")
     #Create geodude
+    print("Brock uses Geodude")
     geodude=Enemy()
     geodude.level=3
     geodude.name="Geodude"
+    geodude.health=12
+    geodude.attacks=["Rock Smash", "Brick Break"]
     battle(starter,geodude)
     #create onix
+    print("Brock uses Onix")
     onix=Enemy()
+    onix.level=5
+    onix.name="Onix"
+    onix.health=16
+    onix.attacks=["Bind", "Tail Whip", "Rock Smash"]
+    battle(starter,onix)
+    print("You defeated Brock and got the rock badge or whatever it was called")
+    exit()
+
 
 
 
